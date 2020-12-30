@@ -79,6 +79,12 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure Edit1Exit(Sender: TObject);
+    procedure Edit4KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit3KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit5KeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
+    procedure Edit9Exit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -94,8 +100,16 @@ implementation
 
 procedure TFrmTelaCadCliente.Button1Click(Sender: TObject);
 begin
- RESTRequest1.Params.ParameterByName('cep').Value :=  Edit1.Text;    // parametro com cep para busca
- RESTRequest1.execute;
+ if (Edit1.Text = '') then
+    begin
+     ShowMessage('Campo CEP do cliente deve ser preenchido, verifique!');
+     Edit1.SetFocus;
+     exit;
+    end else
+     begin
+      RESTRequest1.Params.ParameterByName('cep').Value :=  Edit1.Text;    // parametro com cep para busca
+      RESTRequest1.execute;
+     end;
 
  if DBEdit1.Text <> '' then
     begin
@@ -103,6 +117,9 @@ begin
       edit10.Text := DBEdit4.Text;     // bairro encontrado
       edit11.Text  := DBEdit5.Text;    // cidade encontrado
       edit12.Text  := DBEdit6.Text;    // estado encontrado
+      edit1.text := copy(edit1.text,1,2)
+                     + '.' +copy(edit1.text,3,3)
+                      + '-' +copy(edit1.text,6,3);
       edit8.SetFocus;
     end else
       begin
@@ -131,6 +148,90 @@ Var
  sAnexo: string;
 
 begin
+  if (Edit2.Text = '') then
+     begin
+      ShowMessage('Campo Nome do cliente deve ser preenchido, verifique!');
+      Edit2.SetFocus;
+      exit;
+     end;
+
+  if (Edit3.Text = '') then
+     begin
+      ShowMessage('Campo Identidade do cliente deve ser preenchido, verifique!');
+      Edit3.SetFocus;
+      exit;
+     end;
+
+  if (Edit4.Text = '') then
+     begin
+      ShowMessage('Campo CPF do cliente deve ser preenchido, verifique!');
+      Edit4.SetFocus;
+      exit;
+     end;
+
+  if (Edit5.Text = '') then
+     begin
+      ShowMessage('Campo Telefone do cliente deve ser preenchido, verifique!');
+      Edit5.SetFocus;
+      exit;
+     end;
+
+   if (Edit6.Text = '') then
+     begin
+      ShowMessage('Campo e-mail do cliente deve ser preenchido, verifique!');
+      Edit6.SetFocus;
+      exit;
+     end;
+
+    if (Edit1.Text = '') then
+     begin
+      ShowMessage('Campo CEP do cliente deve ser preenchido, verifique!');
+      Edit1.SetFocus;
+      exit;
+     end;
+
+    if (Edit7.Text = '') then
+     begin
+      ShowMessage('Campo Logradouro do cliente deve ser preenchido, verifique!');
+      Edit7.SetFocus;
+      exit;
+     end;
+
+     if (Edit8.Text = '') then
+     begin
+      ShowMessage('Campo Número do cliente deve ser preenchido, verifique!');
+      Edit8.SetFocus;
+      exit;
+     end;
+
+     if (Edit10.Text = '') then
+     begin
+      ShowMessage('Campo Bairro do cliente deve ser preenchido, verifique!');
+      Edit10.SetFocus;
+      exit;
+     end;
+
+     if (Edit11.Text = '') then
+     begin
+      ShowMessage('Campo Cidade do cliente deve ser preenchido, verifique!');
+      Edit11.SetFocus;
+      exit;
+     end;
+
+     if (Edit12.Text = '') then
+     begin
+      ShowMessage('Campo UF do cliente deve ser preenchido, verifique!');
+      Edit12.SetFocus;
+      exit;
+     end;
+
+      if (ComboBox1.Text = '') then
+     begin
+      ShowMessage('Campo País do cliente deve ser preenchido, verifique!');
+      ComboBox1.SetFocus;
+      exit;
+     end;
+
   XMLDocument1.FileName := '';
   XMLDocument1.XML.Text := '';
   XMLDocument1.Active := False;
@@ -234,19 +335,19 @@ begin
 
     // Configuração da mensagem (TIdMessage)
     IdMessage.From.Address := edit6.text;
-    IdMessage.From.Name := 'INFOSISTEMAS';
+    IdMessage.From.Name := 'Cadastro de Cliente - InfoSistemas';
     IdMessage.ReplyTo.EMailAddresses := IdMessage.From.Address;
-    IdMessage.Recipients.Add.Text := 'destinatario1@email.com';
+    IdMessage.Recipients.Add.Text := edit6.text;
     IdMessage.Subject := 'Cadastro de Clientes';
     IdMessage.Encoding := meMIME;
 
     // Configuração do corpo do email (TIdText)
     IdText := TIdText.Create(IdMessage.MessageParts);
-    IdText.Body.Add('Prezado, segue cadastro de Clientes e xml.');
+    IdText.Body.Add('Prezado, '+Edit2.text+', seu cadastro foi efetuado com sucesso. Segue em anexo a conformação do cadastro em xml.');
     IdText.ContentType := 'text/plain; charset=iso-8859-1';
 
     // Opcional - Anexo da mensagem (TIdAttachmentFile)
-    sAnexo := 'C:\projetos\teste_jackson\Win32\Debug\xml_cadastro_cliente.xml';
+    sAnexo := 'C:\projetos\infosistemas\project\Win32\Debug\xml_cadastro_cliente.xml';
     if FileExists(sAnexo) then
     begin
       TIdAttachmentFile.Create(IdMessage.MessageParts, sAnexo);
@@ -268,13 +369,11 @@ begin
     // Envio da mensagem
     try
       IdSMTP.Send(IdMessage);
-      MessageDlg('Mensagem enviada com sucesso!', mtInformation, [mbOK], 0);
+      ShowMessage('E-mail enviado com sucesso!');
     except
       On E:Exception do
       begin
-        MessageDlg('Erro ao enviar a mensagem: ' +
-          E.Message, mtWarning, [mbOK], 0);
-      end;
+       ShowMessage('Erro ao enviar o E-mail, verifique!');      end;
     end;
   finally
     // desconecta do servidor
@@ -286,6 +385,137 @@ begin
     FreeAndNil(IdSSLIOHandlerSocket);
     FreeAndNil(IdSMTP);
   end;
+
+if Application.MessageBox('Deseja limpar o Cadastro ??','Aviso',MB_ICONQUESTION + MB_DEFBUTTON2 + MB_YESNO)= id_yes then
+   begin
+    // limpando campos
+    edit1.Text := '';
+    edit2.Text := '';
+    edit3.Text := '';
+    edit4.Text := '';
+    edit5.Text := '';
+    edit6.Text := '';
+    edit7.Text := '';
+    edit8.Text := '';
+    edit9.Text := '';
+    edit10.Text := '';
+    edit11.Text := '';
+    edit12.Text := '';
+    ComboBox1.Text := '';
+    edit2.SetFocus;
+    exit;
+   end else
+    begin
+     edit2.SetFocus;
+     exit;
+    end;
+end;
+
+procedure TFrmTelaCadCliente.Edit1Exit(Sender: TObject);
+begin
+ if (Edit1.Text = '') then
+    begin
+     ShowMessage('Campo CEP do cliente deve ser preenchido, verifique!');
+     Edit1.SetFocus;
+     exit;
+    end else
+     Button1.Click;
+end;
+
+procedure TFrmTelaCadCliente.Edit3KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #8 then       // teclou backspace
+      exit;
+
+   if Length(Edit3.Text) = 2 then
+      begin
+         Edit3.Text := Edit3.Text + '-';
+         Edit3.Selstart := Length(Edit3.text);
+      end;
+
+   if Length(Edit3.Text) = 4 then
+      begin
+         Edit3.Text := Edit3.Text + '.';
+         Edit3.Selstart := Length(Edit3.text);
+      end;
+
+   if Length(Edit3.Text) = 8 then
+      begin
+         Edit3.Text := Edit3.Text + '.';
+         Edit3.Selstart := Length(Edit3.text);
+      end;
+
+end;
+
+procedure TFrmTelaCadCliente.Edit4KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #8 then    // teclou backspace
+      exit;
+
+   if Length(Edit4.Text) = 3 then
+      begin
+         Edit4.Text := Edit4.Text + '.';
+         Edit4.Selstart := Length(Edit4.text);
+      end;
+
+   if Length(Edit4.Text) = 7 then
+      begin
+         Edit4.Text := Edit4.Text + '.';
+         Edit4.Selstart := Length(Edit4.text);
+      end;
+
+   if Length(Edit4.Text) = 11 then
+      begin
+         Edit4.Text := Edit4.Text + '-';
+         Edit4.Selstart := Length(Edit4.text);
+      end;
+end;
+
+procedure TFrmTelaCadCliente.Edit5KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #8 then  // teclou backspace
+      exit;
+
+   if Length(Edit5.Text) = 0 then
+      begin
+         Edit5.Text := Edit5.Text + '(';
+         Edit5.Selstart := Length(Edit5.text);
+      end;
+
+   if Length(Edit5.Text) = 3 then
+      begin
+         Edit5.Text := Edit5.Text + ')';
+         Edit5.Selstart := Length(Edit5.text);
+      end;
+
+   if Length(Edit5.Text) = 4 then
+      begin
+         Edit5.Text := Edit5.Text + ' ';
+         Edit5.Selstart := Length(Edit5.text);
+      end;
+
+   if Length(Edit5.Text) = 6 then
+      begin
+         Edit5.Text := Edit5.Text + ' ';
+         Edit5.Selstart := Length(Edit5.text);
+      end;
+
+   if Length(Edit5.Text) = 11 then
+      begin
+         Edit5.Text := Edit5.Text + '-';
+         Edit5.Selstart := Length(Edit5.text);
+      end;
+end;
+
+procedure TFrmTelaCadCliente.Edit9Exit(Sender: TObject);
+begin
+ ComboBox1.Text := 'BRASIL';
+ ComboBox1.SetFocus;
+end;
+
+procedure TFrmTelaCadCliente.FormShow(Sender: TObject);
+begin
+ edit2.SetFocus;
 end;
 
 end.

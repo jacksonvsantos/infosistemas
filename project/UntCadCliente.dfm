@@ -1,25 +1,31 @@
 object FrmTelaCadCliente: TFrmTelaCadCliente
   Left = 0
   Top = 0
-  Align = alCustom
+  Anchors = [akLeft, akTop, akRight]
+  BiDiMode = bdLeftToRight
+  BorderStyle = bsToolWindow
   Caption = 'Tela Cadastro Cliente'
-  ClientHeight = 416
-  ClientWidth = 732
+  ClientHeight = 426
+  ClientWidth = 742
   Color = clBtnFace
-  DefaultMonitor = dmDesktop
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIForm
   OldCreateOrder = False
+  ParentBiDiMode = False
+  Position = poDesktopCenter
+  Visible = True
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 732
-    Height = 416
+    Width = 742
+    Height = 426
     Align = alClient
     TabOrder = 0
     object Label1: TLabel
@@ -168,9 +174,9 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
       object Label11: TLabel
         Left = 206
         Top = 88
-        Width = 42
+        Width = 78
         Height = 13
-        Caption = 'Telefone'
+        Caption = 'Telefone Celular'
       end
       object Label12: TLabel
         Left = 333
@@ -184,6 +190,9 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 45
         Width = 703
         Height = 21
+        AutoSelect = False
+        AutoSize = False
+        CharCase = ecUpperCase
         TabOrder = 0
       end
       object Edit3: TEdit
@@ -191,7 +200,9 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 104
         Width = 89
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 1
+        OnKeyPress = Edit3KeyPress
       end
       object Edit4: TEdit
         Left = 103
@@ -199,6 +210,7 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Width = 97
         Height = 21
         TabOrder = 2
+        OnKeyPress = Edit4KeyPress
       end
       object Edit5: TEdit
         Left = 206
@@ -206,12 +218,14 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Width = 121
         Height = 21
         TabOrder = 3
+        OnKeyPress = Edit5KeyPress
       end
       object Edit6: TEdit
         Left = 333
         Top = 104
         Width = 378
         Height = 21
+        CharCase = ecLowerCase
         TabOrder = 4
       end
     end
@@ -284,6 +298,7 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Width = 121
         Height = 21
         TabOrder = 0
+        OnExit = Edit1Exit
       end
       object Button1: TButton
         Left = 135
@@ -300,6 +315,7 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 87
         Width = 457
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 2
       end
       object Edit8: TEdit
@@ -314,13 +330,16 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 87
         Width = 177
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 4
+        OnExit = Edit9Exit
       end
       object Edit10: TEdit
         Left = 6
         Top = 143
         Width = 242
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 5
       end
       object Edit11: TEdit
@@ -328,6 +347,7 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 143
         Width = 211
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 6
       end
       object Edit12: TEdit
@@ -335,6 +355,7 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 143
         Width = 57
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 7
       end
       object ComboBox1: TComboBox
@@ -342,205 +363,206 @@ object FrmTelaCadCliente: TFrmTelaCadCliente
         Top = 143
         Width = 177
         Height = 21
+        CharCase = ecUpperCase
         TabOrder = 8
         Items.Strings = (
-          'Afeganist'#227'o'#9
-          #193'frica do Sul'#9
-          'Alb'#226'nia'#9
-          'Alemanha'#9
-          'Andorra'#9
-          'Angola'#9
-          'Antiga e Barbuda'#9
-          'Ar'#225'bia Saudita'#9
-          'Arg'#233'lia'#9
-          'Argentina'#9
-          'Arm'#233'nia'#9
-          'Austr'#225'lia'#9
-          #193'ustria'#9
-          'Azerbaij'#227'o'#9
-          'Bahamas'#9
-          'Bangladexe'#9
-          'Barbados'#9
-          'Bar'#233'm'#9
-          'B'#233'lgica'#9
-          'Belize'#9
-          'Benim'#9
-          'Bielorr'#250'ssia'#9
-          'Bol'#237'via'#9
-          'B'#243'snia e Herzegovina'#9
-          'Botsuana'#9
-          'Brasil'#9
-          'Brunei'#9
-          'Bulg'#225'ria'#9
-          'Burquina Faso'#9
-          'Bur'#250'ndi'#9
-          'But'#227'o'#9
-          'Cabo Verde'#9
-          'Camar'#245'es'#9
-          'Camboja'#9
-          'Canad'#225#9
-          'Catar'#9
-          'Cazaquist'#227'o'#9
-          'Chade'#9
-          'Chile'#9
-          'China'#9
-          'Chipre'#9
-          'Col'#244'mbia'#9
-          'Comores'#9
-          'Congo-Brazzaville'#9
-          'Coreia do Norte'#9
-          'Coreia do Sul'#9
-          'Cosovo'#9
-          'Costa do Marfim'#9
-          'Costa Rica'#9
-          'Cro'#225'cia'#9
-          'Cuaite'#9
-          'Cuba'#9
-          'Dinamarca'#9
-          'Dominica'#9
-          'Egito'#9
-          'Emirados '#193'rabes Unidos'#9
-          'Equador'#9
-          'Eritreia'#9
-          'Eslov'#225'quia'#9
-          'Eslov'#233'nia'#9
-          'Espanha'#9
-          'Estado da Palestina'#9
-          'Estados Unidos'#9
-          'Est'#243'nia'#9
-          'Eti'#243'pia'#9
-          'Fiji'#9
-          'Filipinas'#9
-          'Finl'#226'ndia'#9
-          'Fran'#231'a'#9
-          'Gab'#227'o'#9
-          'G'#226'mbia'#9
-          'Gana'#9
-          'Ge'#243'rgia'#9
-          'Granada'#9
-          'Gr'#233'cia'#9
-          'Guatemala'#9
-          'Guiana'#9
-          'Guin'#233#9
-          'Guin'#233' Equatorial'#9
-          'Guin'#233'-Bissau'#9
-          'Haiti'#9
-          'Honduras'#9
-          'Hungria'#9
-          'I'#233'men'#9
-          'Ilhas Marechal'#9
-          #205'ndia'#9
-          'Indon'#233'sia'#9
-          'Ir'#227'o'#9
-          'Iraque'#9
-          'Irlanda'#9
-          'Isl'#226'ndia'#9
-          'Israel'#9
-          'It'#225'lia'#9
-          'Jamaica'#9
-          'Jap'#227'o'#9
-          'Jibuti'#9
-          'Jord'#226'nia'#9
-          'Laus'#9
-          'Lesoto'#9
-          'Let'#243'nia'#9
-          'L'#237'bano'#9
-          'Lib'#233'ria'#9
-          'L'#237'bia'#9
-          'Listenstaine'#9
-          'Litu'#226'nia'#9
-          'Luxemburgo'#9
-          'Maced'#243'nia'#9
-          'Madag'#225'scar'#9
-          'Mal'#225'sia'#9
-          'Mal'#225'ui'#9
-          'Maldivas'#9
-          'Mali'#9
-          'Malta'#9
-          'Marrocos'#9
-          'Maur'#237'cia'#9
-          'Maurit'#226'nia'#9
-          'M'#233'xico'#9
-          'Mianmar'#9
-          'Micron'#233'sia'#9
-          'Mo'#231'ambique'#9
-          'Mold'#225'via'#9
-          'M'#243'naco'#9
-          'Mong'#243'lia'#9
-          'Montenegro'#9
-          'Nam'#237'bia'#9
-          'Nauru'#9
-          'Nepal'#9
-          'Nicar'#225'gua'#9
-          'N'#237'ger'#9
-          'Nig'#233'ria'#9
-          'Noruega'#9
-          'Nova Zel'#226'ndia'#9
-          'Om'#227#9
-          'Pa'#237'ses Baixos'#9
-          'Palau'#9
-          'Panam'#225#9
-          'Papua Nova Guin'#233#9
-          'Paquist'#227'o'#9
-          'Paraguai'#9
-          'Peru'#9
-          'Pol'#243'nia'#9
-          'Portugal'#9
-          'Qu'#233'nia'#9
-          'Quirguist'#227'o'#9
-          'Quirib'#225'ti'#9
-          'Reino Unido'#9
-          'Rep'#250'blica Centro-Africana'#9
-          'Rep'#250'blica Checa'#9
-          'Rep'#250'blica Democr'#225'tica do Congo'#9
-          'Rep'#250'blica Dominicana'#9
-          'Rom'#233'nia'#9
-          'Ruanda'#9
-          'R'#250'ssia'#9
-          'Salom'#227'o'#9
-          'Salvador'#9
-          'Samoa'#9
-          'Santa L'#250'cia'#9
-          'S'#227'o Crist'#243'v'#227'o e Neves'#9
-          'S'#227'o Marinho'#9
-          'S'#227'o Tom'#233' e Pr'#237'ncipe'#9
-          'S'#227'o Vicente e Granadinas'#9
-          'Seicheles'#9
-          'Senegal'#9
-          'Serra Leoa'#9
-          'S'#233'rvia'#9
-          'Singapura'#9
-          'S'#237'ria'#9
-          'Som'#225'lia'#9
-          'Sri Lanca'#9
-          'Suazil'#226'ndia'#9
-          'Sud'#227'o'#9
-          'Sud'#227'o do Sul'#9
-          'Su'#233'cia'#9
-          'Su'#237#231'a'#9
-          'Suriname'#9
-          'Tail'#226'ndia'#9
-          'Taiu'#227#9
-          'Tajiquist'#227'o'#9
-          'Tanz'#226'nia'#9
-          'Timor-Leste'#9
-          'Togo'#9
-          'Tonga'#9
-          'Trindade e Tobago'#9
-          'Tun'#237'sia'#9
-          'Turcomenist'#227'o'#9
-          'Turquia'#9
-          'Tuvalu'#9
-          'Ucr'#226'nia'#9
-          'Uganda'#9
-          'Uruguai'#9
-          'Usbequist'#227'o'#9
-          'Vanuatu'#9
-          'Vaticano'#9
-          'Venezuela'#9
-          'Vietname'#9
-          'Z'#226'mbia'#9
-          'Zimb'#225'bue'#9)
+          'AFEGANIST'#195'O'#9
+          #193'FRICA DO SUL'#9
+          'ALB'#194'NIA'#9
+          'ALEMANHA'#9
+          'ANDORRA'#9
+          'ANGOLA'#9
+          'ANTIGA E BARBUDA'#9
+          'AR'#193'BIA SAUDITA'#9
+          'ARG'#201'LIA'#9
+          'ARGENTINA'#9
+          'ARM'#201'NIA'#9
+          'AUSTR'#193'LIA'#9
+          #193'USTRIA'#9
+          'AZERBAIJ'#195'O'#9
+          'BAHAMAS'#9
+          'BANGLADEXE'#9
+          'BARBADOS'#9
+          'BAR'#201'M'#9
+          'B'#201'LGICA'#9
+          'BELIZE'#9
+          'BENIM'#9
+          'BIELORR'#218'SSIA'#9
+          'BOL'#205'VIA'#9
+          'B'#211'SNIA E HERZEGOVINA'#9
+          'BOTSUANA'#9
+          'BRASIL'#9
+          'BRUNEI'#9
+          'BULG'#193'RIA'#9
+          'BURQUINA FASO'#9
+          'BUR'#218'NDI'#9
+          'BUT'#195'O'#9
+          'CABO VERDE'#9
+          'CAMAR'#213'ES'#9
+          'CAMBOJA'#9
+          'CANAD'#193#9
+          'CATAR'#9
+          'CAZAQUIST'#195'O'#9
+          'CHADE'#9
+          'CHILE'#9
+          'CHINA'#9
+          'CHIPRE'#9
+          'COL'#212'MBIA'#9
+          'COMORES'#9
+          'CONGO-BRAZZAVILLE'#9
+          'COREIA DO NORTE'#9
+          'COREIA DO SUL'#9
+          'COSOVO'#9
+          'COSTA DO MARFIM'#9
+          'COSTA RICA'#9
+          'CRO'#193'CIA'#9
+          'CUAITE'#9
+          'CUBA'#9
+          'DINAMARCA'#9
+          'DOMINICA'#9
+          'EGITO'#9
+          'EMIRADOS '#193'RABES UNIDOS'#9
+          'EQUADOR'#9
+          'ERITREIA'#9
+          'ESLOV'#193'QUIA'#9
+          'ESLOV'#201'NIA'#9
+          'ESPANHA'#9
+          'ESTADO DA PALESTINA'#9
+          'ESTADOS UNIDOS'#9
+          'EST'#211'NIA'#9
+          'ETI'#211'PIA'#9
+          'FIJI'#9
+          'FILIPINAS'#9
+          'FINL'#194'NDIA'#9
+          'FRAN'#199'A'#9
+          'GAB'#195'O'#9
+          'G'#194'MBIA'#9
+          'GANA'#9
+          'GE'#211'RGIA'#9
+          'GRANADA'#9
+          'GR'#201'CIA'#9
+          'GUATEMALA'#9
+          'GUIANA'#9
+          'GUIN'#201#9
+          'GUIN'#201' EQUATORIAL'#9
+          'GUIN'#201'-BISSAU'#9
+          'HAITI'#9
+          'HONDURAS'#9
+          'HUNGRIA'#9
+          'I'#201'MEN'#9
+          'ILHAS MARECHAL'#9
+          #205'NDIA'#9
+          'INDON'#201'SIA'#9
+          'IR'#195'O'#9
+          'IRAQUE'#9
+          'IRLANDA'#9
+          'ISL'#194'NDIA'#9
+          'ISRAEL'#9
+          'IT'#193'LIA'#9
+          'JAMAICA'#9
+          'JAP'#195'O'#9
+          'JIBUTI'#9
+          'JORD'#194'NIA'#9
+          'LAUS'#9
+          'LESOTO'#9
+          'LET'#211'NIA'#9
+          'L'#205'BANO'#9
+          'LIB'#201'RIA'#9
+          'L'#205'BIA'#9
+          'LISTENSTAINE'#9
+          'LITU'#194'NIA'#9
+          'LUXEMBURGO'#9
+          'MACED'#211'NIA'#9
+          'MADAG'#193'SCAR'#9
+          'MAL'#193'SIA'#9
+          'MAL'#193'UI'#9
+          'MALDIVAS'#9
+          'MALI'#9
+          'MALTA'#9
+          'MARROCOS'#9
+          'MAUR'#205'CIA'#9
+          'MAURIT'#194'NIA'#9
+          'M'#201'XICO'#9
+          'MIANMAR'#9
+          'MICRON'#201'SIA'#9
+          'MO'#199'AMBIQUE'#9
+          'MOLD'#193'VIA'#9
+          'M'#211'NACO'#9
+          'MONG'#211'LIA'#9
+          'MONTENEGRO'#9
+          'NAM'#205'BIA'#9
+          'NAURU'#9
+          'NEPAL'#9
+          'NICAR'#193'GUA'#9
+          'N'#205'GER'#9
+          'NIG'#201'RIA'#9
+          'NORUEGA'#9
+          'NOVA ZEL'#194'NDIA'#9
+          'OM'#195#9
+          'PA'#205'SES BAIXOS'#9
+          'PALAU'#9
+          'PANAM'#193#9
+          'PAPUA NOVA GUIN'#201#9
+          'PAQUIST'#195'O'#9
+          'PARAGUAI'#9
+          'PERU'#9
+          'POL'#211'NIA'#9
+          'PORTUGAL'#9
+          'QU'#201'NIA'#9
+          'QUIRGUIST'#195'O'#9
+          'QUIRIB'#193'TI'#9
+          'REINO UNIDO'#9
+          'REP'#218'BLICA CENTRO-AFRICANA'#9
+          'REP'#218'BLICA CHECA'#9
+          'REP'#218'BLICA DEMOCR'#193'TICA DO CONGO'#9
+          'REP'#218'BLICA DOMINICANA'#9
+          'ROM'#201'NIA'#9
+          'RUANDA'#9
+          'R'#218'SSIA'#9
+          'SALOM'#195'O'#9
+          'SALVADOR'#9
+          'SAMOA'#9
+          'SANTA L'#218'CIA'#9
+          'S'#195'O CRIST'#211'V'#195'O E NEVES'#9
+          'S'#195'O MARINHO'#9
+          'S'#195'O TOM'#201' E PR'#205'NCIPE'#9
+          'S'#195'O VICENTE E GRANADINAS'#9
+          'SEICHELES'#9
+          'SENEGAL'#9
+          'SERRA LEOA'#9
+          'S'#201'RVIA'#9
+          'SINGAPURA'#9
+          'S'#205'RIA'#9
+          'SOM'#193'LIA'#9
+          'SRI LANCA'#9
+          'SUAZIL'#194'NDIA'#9
+          'SUD'#195'O'#9
+          'SUD'#195'O DO SUL'#9
+          'SU'#201'CIA'#9
+          'SU'#205#199'A'#9
+          'SURINAME'#9
+          'TAIL'#194'NDIA'#9
+          'TAIU'#195#9
+          'TAJIQUIST'#195'O'#9
+          'TANZ'#194'NIA'#9
+          'TIMOR-LESTE'#9
+          'TOGO'#9
+          'TONGA'#9
+          'TRINDADE E TOBAGO'#9
+          'TUN'#205'SIA'#9
+          'TURCOMENIST'#195'O'#9
+          'TURQUIA'#9
+          'TUVALU'#9
+          'UCR'#194'NIA'#9
+          'UGANDA'#9
+          'URUGUAI'#9
+          'USBEQUIST'#195'O'#9
+          'VANUATU'#9
+          'VATICANO'#9
+          'VENEZUELA'#9
+          'VIETNAME'#9
+          'Z'#194'MBIA'#9
+          'ZIMB'#193'BUE'#9)
       end
     end
     object Button3: TButton
