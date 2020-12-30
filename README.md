@@ -2,8 +2,12 @@
 
 ### Cadastro de clientes com consulta via API de cep, com geração de xml e envio por e-mail.
 
-Arquivos devem ser colocados na pasta C:\projetos\infosistemas\project
+# Orientações para executar o projeto
 
-Executavel precisa estar na pasta C:\projetos\infosistemas\project\Win32\Debug com as Dll para o envio do e-mail.
+É necessário a criação da seguinte estrutura __C:\projetos\__ e clonar o repositório dentro da pasta projetos.
 
-O arquivo executável está no diretorio "infosistemas\project\Win32\Debug", com o nome "T_Clientes.exe"
+__O caminho para a pasta do projeto ficará: __C:\projetos\infosistemas\project__
+
+Executavel precisa estar na pasta __C:\projetos\infosistemas\project\Win32\Debug__ com as Dll para o envio do e-mail.
+
+###O arquivo executável está no diretorio "infosistemas\project\Win32\Debug", com o nome "T_Clientes.exe"
